@@ -1,0 +1,151 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Check, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { usePricing, BillingPeriod } from "@/context/PricingContext";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const PricingSection = () => {
+  const { plans, billingPeriod, setBillingPeriod } = usePricing();
+
+  const handlePeriodChange = (value: string) => {
+    setBillingPeriod(value as BillingPeriod);
+  };
+
+  const getPriceDisplay = (plan: typeof plans[0]) => {
+    return plan.prices[billingPeriod];
+  };
+
+  const getOriginalPriceDisplay = (plan: typeof plans[0]) => {
+    return plan.originalPrices?.[billingPeriod];
+  };
+
+  const getPeriodLabel = () => {
+    switch (billingPeriod) {
+      case 'monthly': return '/mes';
+      case 'semester': return '/semestre';
+      case 'annual': return '/año';
+      default: return '';
+    }
+  };
+
+  return (
+    <section id="pricing" className="py-20 bg-card/50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-10">
+          <Badge variant="secondary" className="mb-4 bg-secondary text-foreground border-border">
+            Precios Simples
+          </Badge>
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            Elige el plan ideal para tu taller
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            Sin costos ocultos. Cancela cuando quieras. Prueba gratis por 7 días.
+          </p>
+
+          <Tabs defaultValue="monthly" className="w-[400px] mx-auto" onValueChange={handlePeriodChange}>
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="monthly">Mensual</TabsTrigger>
+              <TabsTrigger value="semester">Semestral</TabsTrigger>
+              <TabsTrigger value="annual">Anual</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
+          {plans.map((plan) => (
+            <Card
+              key={plan.id}
+              className={`w-full max-w-md md:max-w-[400px] relative flex flex-col transition-all duration-500 rounded-xl hover:-translate-y-1 ${plan.popular
+                ? 'bg-gradient-to-br from-card/80 via-card/90 to-emerald-500/10 border-2 border-emerald-500 shadow-2xl shadow-emerald-500/20 z-10 scale-[1.02]'
+                : 'bg-card/50 border border-white/5 hover:border-primary/30 hover:shadow-lg'
+                }`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <Badge className="bg-emerald-500 hover:bg-emerald-600 border-0 text-black px-4 py-1 shadow-md shadow-emerald-500/20 font-bold">
+                    <Star className="w-3 h-3 mr-1 fill-black" />
+                    Más Popular
+                  </Badge>
+                </div>
+              )}
+
+              <CardHeader className="text-center pb-4 pt-8">
+                <CardTitle className="text-2xl font-bold text-foreground">
+                  {plan.name}
+                </CardTitle>
+                <CardDescription className="mt-2 min-h-[40px]">
+                  {plan.description}
+                </CardDescription>
+
+                <div className="mt-6 flex flex-col items-center justify-center min-h-[80px]">
+                  {getOriginalPriceDisplay(plan) && (
+                    <span className="text-lg text-muted-foreground line-through mb-1">
+                      {getOriginalPriceDisplay(plan)}
+                    </span>
+                  )}
+                  <div>
+                    <span className="text-4xl font-extrabold text-foreground tracking-tight">
+                      {getPriceDisplay(plan)}
+                    </span>
+                    <span className="text-muted-foreground ml-1 font-medium">{getPeriodLabel()}</span>
+                  </div>
+                </div>
+
+                {billingPeriod === 'annual' && plan.savings && (
+                  <Badge variant="secondary" className="mt-3 bg-green-500/10 text-green-600 border-0">
+                    {plan.savings}
+                  </Badge>
+                )}
+                {/* Fallback savings display logic if not explicitly in data for other plans */}
+                {billingPeriod === 'annual' && !plan.savings && plan.id !== 'elite' && (
+                  <Badge variant="secondary" className="mt-3 bg-green-500/10 text-green-600 border-0">
+                    Ahorrá 2 meses
+                  </Badge>
+                )}
+              </CardHeader>
+
+              <CardContent className="flex-1 flex flex-col">
+                <div className="flex-1">
+                  <ul className="space-y-3 mb-8 mt-2">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <div className="flex-shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-green-500" />
+                        </div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Button
+                  className={`w-full text-base py-6 font-bold ${plan.popular ? 'bg-emerald-500 hover:bg-emerald-600 border-0 text-black shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40' : 'bg-primary/5 border border-primary/20 text-foreground hover:bg-primary/10 hover:border-primary/40 transition-all duration-300'}`}
+                  size="lg"
+                  asChild
+                >
+                  {plan.cta === "Contactar Ventas" ? (
+                    <a href="http://wa.me/+5491124949533" target="_blank" rel="noopener noreferrer">
+                      {plan.cta}
+                    </a>
+                  ) : (
+                    <Link to="/register">
+                      {plan.cta}
+                    </Link>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <p className="text-center text-sm text-muted-foreground mt-12 opacity-70">
+          Precios en pesos argentinos. Incluye IVA. Facturación electrónica disponible.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default PricingSection;

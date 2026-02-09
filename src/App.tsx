@@ -24,7 +24,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/GSM.FIX-LANDINGPAGE">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/ordenes" element={<OrdersDemo />} />

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
-    // Se mantiene relative para el posicionamiento absoluto de los elementos laterales
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4">
       {/* Background Elements - Reduced Intensity */}
       <div className="absolute inset-0 bg-gradient-to-b from-monster-dark/80 via-monster-dark/90 to-monster-dark/95 z-0"></div>
@@ -17,6 +16,7 @@ const HeroSection = () => {
 
       {/* --- Left Line-Art Illustration (Smartphone) --- */}
       {/* REDUCED SIZE: max-w-[170px] (was 280px). Aligned to bottom. Moved inwards (lg:left-32) to balance. */}
+      {/* UPDATE: Ensure lg:left-32 (128px) to reduce visual gap. */}
       <div className="hidden lg:block lg:absolute lg:bottom-0 lg:left-32 lg:pb-20 lg:pl-10 w-1/4 max-w-[170px] opacity-80 pointer-events-none select-none z-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"

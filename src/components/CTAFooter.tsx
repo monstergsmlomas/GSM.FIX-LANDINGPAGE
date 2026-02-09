@@ -102,12 +102,17 @@ const CTAFooter = () => {
                 © 2026 GSM FIX. Todos los derechos reservados.
               </p>
 
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span>Desarrollado por <span className="text-primary font-medium">Rodrigo Roselli</span> y <span className="text-primary font-medium">Tomas Morelli</span></span>
                 <div className="h-4 w-[1px] bg-border mx-1"></div>
-                <div className="flex items-center gap-2 opacity-90 hover:opacity-100 transition-opacity">
-                  <img src="/conarte-logo.png" alt="CONARTE" className="h-24 w-auto" />
-                  <span className="font-bold tracking-wider text-xs">CONARTE</span>
+                <div className="flex items-center gap-4 opacity-90 hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-2">
+                    <img src="/conarte-logo.png" className="h-20 w-auto" />
+                  </div>
+                  <div className="h-4 w-[1px] bg-border/50"></div>
+                  <div className="flex items-center gap-2">
+                    <img src="/revolucion-logo.png" className="h-20 w-auto" />
+                  </div>
                 </div>
               </div>
             </div>

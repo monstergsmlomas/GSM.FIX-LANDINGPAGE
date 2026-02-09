@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // AÑADIMOS ESTA LÍNEA:
-  base: "/GSM.FIX-LANDINGPAGE/",
+  base: mode === 'production' ? '/GSM.FIX-LANDINGPAGE/' : '/',
 
   server: {
     host: "::",

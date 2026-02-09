@@ -60,6 +60,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        monster: {
+          dark: "#09090b", // zinc-950
+          purple: "#a855f7",
+          blue: "#3b82f6",
+          emerald: "#10b981",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

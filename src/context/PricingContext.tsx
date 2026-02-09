@@ -109,18 +109,18 @@ const defaultPlans: Plan[] = [
 
 const initialTiers: Plan[] = [
     {
-        id: 'prime', // Formerly Starter
+        id: 'prime',
         name: "Prime",
         description: "Todo lo que necesitas para tu taller",
         prices: {
             monthly: "$30.000",
-            semester: "$162.000", // 10% off
-            annual: "$360.000"   // Adjusted as per user request
+            semester: "$162.000",
+            annual: "$300.000"
         },
         originalPrices: {
             monthly: "$40.000",
             semester: "$180.000",
-            annual: "$480.000"
+            annual: "$400.000"
         },
         features: [
             "Gestión de órdenes ilimitadas",

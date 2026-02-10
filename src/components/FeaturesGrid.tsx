@@ -43,7 +43,7 @@ const FeaturesGrid = () => {
     {
       icon: Package,
       title: "Stock",
-      description: "Control total de inventario con alertas de stock bajo y gestión de proveedores.",
+      description: "Control total de inventario con alertas de  stock bajo y gestión de proveedores.",
       benefits: ["Alertas automáticas", "Categorías", "Costos y precios"],
       iconBg: "bg-yellow-500/20",
       iconColor: "text-yellow-400",

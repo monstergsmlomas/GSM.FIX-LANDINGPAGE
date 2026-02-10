@@ -44,13 +44,31 @@ const PricingSection = () => {
             Sin costos ocultos. Cancela cuando quieras. Prueba gratis por 7 días.
           </p>
 
-          <Tabs defaultValue="monthly" className="w-[400px] mx-auto" onValueChange={handlePeriodChange}>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="monthly">Mensual</TabsTrigger>
-              <TabsTrigger value="semester">Semestral</TabsTrigger>
-              <TabsTrigger value="annual">Anual</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="relative inline-flex group mt-4">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600/30 via-blue-500/30 to-purple-600/30 rounded-xl blur opacity-20 transition duration-500"></div>
+            <Tabs defaultValue="monthly" className="relative w-[500px] mx-auto" onValueChange={handlePeriodChange}>
+              <TabsList className="grid w-full grid-cols-3 bg-neutral-900/90 backdrop-blur-xl border border-white/10 p-1.5 h-auto rounded-xl shadow-lg">
+                <TabsTrigger
+                  value="monthly"
+                  className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:font-semibold py-3 transition-all duration-300 hover:scale-105 hover:bg-purple-600/20 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:z-10 hover:text-white"
+                >
+                  Mensual
+                </TabsTrigger>
+                <TabsTrigger
+                  value="semester"
+                  className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:font-semibold py-3 transition-all duration-300 hover:scale-105 hover:bg-purple-600/20 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:z-10 hover:text-white"
+                >
+                  Semestral
+                </TabsTrigger>
+                <TabsTrigger
+                  value="annual"
+                  className="text-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:font-semibold py-3 transition-all duration-300 hover:scale-105 hover:bg-purple-600/20 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:z-10 hover:text-white"
+                >
+                  Anual
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-12 max-w-6xl mx-auto items-stretch py-10">
@@ -61,9 +79,9 @@ const PricingSection = () => {
             return (
               <Card
                 key={plan.id}
-                className={`w-full max-w-sm relative flex flex-col transition-all duration-500 ease-out rounded-xl hover:scale-105 hover:z-10 ${plan.id === 'prime'
-                  ? 'bg-gradient-to-br from-card/80 via-card/90 to-emerald-500/10 border-2 border-emerald-500 shadow-2xl shadow-emerald-500/20 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)]'
-                  : 'bg-card/50 border border-white/5 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.7)]'
+                className={`w-full max-w-sm relative flex flex-col transition-all duration-300 ease-out rounded-xl hover:scale-105 hover:z-10 hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] ${plan.id === 'prime'
+                  ? 'bg-gradient-to-br from-card/80 via-card/90 to-emerald-500/10 border-2 border-emerald-500 shadow-2xl shadow-emerald-500/20'
+                  : 'bg-card/50 border border-white/5 hover:border-purple-500/50'
                   }`}
               >
                 {plan.popular && (

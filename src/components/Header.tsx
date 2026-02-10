@@ -3,6 +3,14 @@ import logo from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-md border-b border-white/10 supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -22,15 +30,27 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+          <a
+            href="#features"
+            onClick={(e) => scrollToSection(e, 'features')}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
             Funciones
           </a>
-          <a href="#dashboard" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+          <a
+            href="#dashboard"
+            onClick={(e) => scrollToSection(e, 'dashboard')}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
             Dashboard
           </a>
-          <Link to="#pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+          <a
+            href="#pricing"
+            onClick={(e) => scrollToSection(e, 'pricing')}
+            className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+          >
             Precios
-          </Link>
+          </a>
         </nav>
 
         <div className="flex items-center gap-3">
